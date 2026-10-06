@@ -10,14 +10,14 @@ const ELEVA_URL = "https://eleva-studio.vercel.app/";
 export default function Footer() {
   return (
     <footer className="border-t border-white/[0.06] bg-[#020407]">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5 sm:px-8 lg:px-10">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-8 sm:py-5 lg:px-10">
         {/* Copyright */}
-        <p className="whitespace-nowrap text-[9px] text-white/30 sm:text-[10px]">
+        <p className="min-w-0 text-[8px] leading-4 text-white/30 sm:text-[10px]">
           © 2026 VL Autoclima. Todos os direitos reservados.
         </p>
 
-        {/* Links */}
-        <div className="flex shrink-0 items-center gap-4">
+        {/* Social + Eleva */}
+        <div className="flex shrink-0 items-center gap-2.5 sm:gap-4">
           {/* Instagram */}
           <a
             href={INSTAGRAM_URL}
@@ -28,7 +28,7 @@ export default function Footer() {
           >
             <svg
               viewBox="0 0 24 24"
-              className="h-[15px] w-[15px]"
+              className="h-[14px] w-[14px] sm:h-[15px] sm:w-[15px]"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.8"
@@ -55,7 +55,7 @@ export default function Footer() {
           >
             <svg
               viewBox="0 0 24 24"
-              className="h-[15px] w-[15px]"
+              className="h-[14px] w-[14px] sm:h-[15px] sm:w-[15px]"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.8"
@@ -67,15 +67,23 @@ export default function Footer() {
 
           <span className="h-3 w-px bg-white/[0.08]" />
 
-          {/* Eleva */}
+          {/* Desenvolvido por Eleva */}
           <Link
             href={ELEVA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="whitespace-nowrap text-[9px] text-white/30 transition-colors duration-300 hover:text-white sm:text-[10px]"
+            aria-label="Eleva Studio"
+            className="flex items-center gap-1.5 opacity-60 transition-opacity duration-300 hover:opacity-100"
           >
-            Desenvolvido por{" "}
-            <span className="font-medium text-white/55">EA</span>
+            <span className="whitespace-nowrap text-[8px] text-white/30 sm:text-[10px]">
+              Desenvolvido por
+            </span>
+
+            <img
+              src="/images/logo-eleva.webp"
+              alt="Eleva Studio"
+              className="h-[17px] w-auto object-contain sm:h-[21px]"
+            />
           </Link>
         </div>
       </div>

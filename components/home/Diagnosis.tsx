@@ -181,18 +181,26 @@ export default function Diagnosis() {
             ETAPAS
         ====================================================== */}
         <div className="mt-8">
-          <div className="grid grid-cols-4 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025]">
+          <div className="grid grid-cols-2 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] lg:grid-cols-4">
             {steps.map((step, index) => (
               <div
                 key={step.number}
-                className={`group relative min-h-[180px] overflow-hidden bg-[#07101d]/75 p-3 transition-all duration-500 hover:bg-[#091625] sm:min-h-[235px] sm:p-7 lg:min-h-[245px] lg:p-8 ${
-                  index !== 0
+                className={`group relative min-h-[155px] overflow-hidden bg-[#07101d]/75 p-4 transition-all duration-500 hover:bg-[#091625] sm:min-h-[235px] sm:p-7 lg:min-h-[245px] lg:p-8 ${
+                  index % 2 !== 0
                     ? "border-l border-white/[0.08]"
+                    : ""
+                } ${
+                  index >= 2
+                    ? "border-t border-white/[0.08]"
+                    : ""
+                } lg:border-t-0 ${
+                  index !== 0
+                    ? "lg:border-l"
                     : ""
                 }`}
               >
                 {/* NÚMERO GRANDE DECORATIVO */}
-                <span className="absolute -right-1 top-3 select-none text-[48px] font-bold leading-none tracking-[-0.09em] text-white/[0.025] transition-all duration-500 group-hover:text-[#3b8cff]/[0.07] sm:text-[92px]">
+                <span className="absolute -right-1 top-2 select-none text-[42px] font-bold leading-none tracking-[-0.09em] text-white/[0.025] transition-all duration-500 group-hover:text-[#3b8cff]/[0.07] sm:text-[92px]">
                   {step.number}
                 </span>
 
@@ -200,12 +208,12 @@ export default function Diagnosis() {
                 <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[#1474ff]/0 blur-[55px] transition-all duration-500 group-hover:bg-[#1474ff]/[0.10]" />
 
                 {/* CONTEÚDO */}
-                <div className="absolute bottom-4 left-3 right-3 sm:bottom-7 sm:left-7 sm:right-7 lg:bottom-7 lg:left-8 lg:right-8">
-                  <h3 className="text-[15px] font-semibold tracking-[-0.045em] text-white sm:text-[24px]">
+                <div className="absolute bottom-4 left-4 right-3 sm:bottom-7 sm:left-7 sm:right-7 lg:bottom-7 lg:left-8 lg:right-8">
+                  <h3 className="text-[14px] font-semibold tracking-[-0.045em] text-white sm:text-[24px]">
                     {step.title}
                   </h3>
 
-                  <p className="mt-2 max-w-[245px] text-[8px] leading-4 text-white/35 transition-colors duration-500 group-hover:text-white/50 sm:text-[10px] sm:leading-5">
+                  <p className="mt-1.5 text-[8px] leading-[1.35] text-white/35 transition-colors duration-500 group-hover:text-white/50 sm:mt-2 sm:max-w-[245px] sm:text-[10px] sm:leading-5">
                     {step.description}
                   </p>
                 </div>

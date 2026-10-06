@@ -61,6 +61,7 @@ export default function Workshop() {
   const positionRef = useRef(0);
 
   const draggingRef = useRef(false);
+  const pointerIdRef = useRef<number | null>(null);
   const pointerStartRef = useRef(0);
   const positionStartRef = useRef(0);
 
@@ -109,7 +110,7 @@ export default function Workshop() {
     animationRef.current = requestAnimationFrame(animate);
 
     return () => {
-      if (animationRef.current) {
+      if (animationRef.current !== null) {
         cancelAnimationFrame(animationRef.current);
       }
     };
@@ -118,19 +119,29 @@ export default function Workshop() {
   const handlePointerDown = (
     event: React.PointerEvent<HTMLDivElement>,
   ) => {
+    if (event.pointerType === "mouse" && event.button !== 0) {
+      return;
+    }
+
     draggingRef.current = true;
-    setIsDragging(true);
+    pointerIdRef.current = event.pointerId;
 
     pointerStartRef.current = event.clientX;
     positionStartRef.current = positionRef.current;
 
-    event.currentTarget.setPointerCapture(event.pointerId);
+    setIsDragging(true);
+
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {}
   };
 
   const handlePointerMove = (
     event: React.PointerEvent<HTMLDivElement>,
   ) => {
     if (!draggingRef.current) return;
+
+    if (pointerIdRef.current !== event.pointerId) return;
 
     const distance = event.clientX - pointerStartRef.current;
 
@@ -140,20 +151,35 @@ export default function Workshop() {
     updatePosition();
   };
 
+  const finishDrag = (
+    event?: React.PointerEvent<HTMLDivElement>,
+  ) => {
+    draggingRef.current = false;
+    pointerIdRef.current = null;
+
+    setIsDragging(false);
+
+    if (event) {
+      try {
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      } catch {}
+    }
+  };
+
   const handlePointerUp = (
     event: React.PointerEvent<HTMLDivElement>,
   ) => {
-    draggingRef.current = false;
-    setIsDragging(false);
+    if (pointerIdRef.current !== event.pointerId) return;
 
-    try {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    } catch {}
+    finishDrag(event);
   };
 
-  const handlePointerCancel = () => {
-    draggingRef.current = false;
-    setIsDragging(false);
+  const handlePointerCancel = (
+    event: React.PointerEvent<HTMLDivElement>,
+  ) => {
+    if (pointerIdRef.current !== event.pointerId) return;
+
+    finishDrag(event);
   };
 
   const moveManual = (direction: "left" | "right") => {
@@ -179,37 +205,26 @@ export default function Workshop() {
       ========================================================= */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Base */}
         <div className="absolute inset-0 bg-[#02050a]" />
 
-        {/* Azul principal — canto esquerdo */}
         <div className="absolute -left-[18%] top-[5%] h-[620px] w-[620px] rounded-full bg-[#0759d9]/[0.13] blur-[180px]" />
 
-        {/* Azul secundário — canto direito */}
         <div className="absolute -right-[15%] top-[15%] h-[680px] w-[680px] rounded-full bg-[#1474ff]/[0.11] blur-[190px]" />
 
-        {/* Glow central atrás das imagens */}
         <div className="absolute left-1/2 top-[42%] h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-[#0759d9]/[0.075] blur-[150px]" />
 
-        {/* Ponto de luz azul superior */}
         <div className="absolute left-[32%] top-[-180px] h-[360px] w-[520px] rounded-full bg-[#1474ff]/[0.07] blur-[120px]" />
 
-        {/* Azul mais concentrado no rodapé */}
         <div className="absolute bottom-[-220px] left-[8%] h-[500px] w-[700px] rounded-full bg-[#064bb8]/[0.08] blur-[170px]" />
 
-        {/* Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,transparent_0%,rgba(2,5,10,0.18)_45%,rgba(2,5,10,0.82)_100%)]" />
 
-        {/* Escurecimento lateral */}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,5,10,0.72)_0%,rgba(2,5,10,0.05)_22%,rgba(2,5,10,0.05)_78%,rgba(2,5,10,0.72)_100%)]" />
 
-        {/* Linha de luz superior */}
         <div className="absolute left-1/2 top-0 h-px w-[72%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#1474ff]/[0.35] to-transparent" />
 
-        {/* Linha de luz inferior */}
         <div className="absolute bottom-0 left-1/2 h-px w-[58%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#0759d9]/[0.22] to-transparent" />
 
-        {/* Grid técnico extremamente sutil */}
         <div
           className="absolute inset-0 opacity-[0.018]"
           style={{
@@ -219,7 +234,6 @@ export default function Workshop() {
           }}
         />
 
-        {/* Pequena textura vertical */}
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.015)_0%,transparent_20%,transparent_80%,rgba(20,116,255,0.018)_100%)]" />
       </div>
 
@@ -247,16 +261,12 @@ export default function Workshop() {
 
         {/* CARROSSEL */}
         <div className="relative">
-          {/* Glow atrás do carrossel */}
           <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[30px] bg-[#0759d9]/[0.055] blur-[55px]" />
 
-          {/* Linha de luz superior do carrossel */}
           <div className="pointer-events-none absolute -top-px left-[8%] right-[8%] z-30 h-px bg-gradient-to-r from-transparent via-[#1474ff]/[0.35] to-transparent" />
 
-          {/* Máscara esquerda */}
           <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-16 bg-gradient-to-r from-[#02050a] via-[#02050a]/85 to-transparent sm:w-24" />
 
-          {/* Máscara direita */}
           <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-16 bg-gradient-to-l from-[#02050a] via-[#02050a]/85 to-transparent sm:w-24" />
 
           <div
@@ -266,16 +276,12 @@ export default function Workshop() {
             style={{
               touchAction: "pan-y",
               userSelect: "none",
+              WebkitUserSelect: "none",
             }}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerCancel}
-            onPointerLeave={(event) => {
-              if (draggingRef.current) {
-                handlePointerUp(event);
-              }
-            }}
           >
             <div
               ref={trackRef}
@@ -299,13 +305,10 @@ export default function Workshop() {
                     className="pointer-events-none object-cover transition-transform duration-700 hover:scale-[1.025]"
                   />
 
-                  {/* Overlay cinematográfico */}
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/[0.08]" />
 
-                  {/* Leve tonalidade azul */}
                   <div className="pointer-events-none absolute inset-0 bg-[#0759d9]/[0.025] mix-blend-screen" />
 
-                  {/* Borda interna */}
                   <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.055]" />
                 </div>
               ))}
@@ -321,10 +324,7 @@ export default function Workshop() {
                 aria-label="Imagens anteriores"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.09] bg-white/[0.025] text-white/45 backdrop-blur-md transition-all duration-300 hover:border-[#1474ff]/50 hover:bg-[#1474ff]/10 hover:text-white"
               >
-                <ArrowLeft
-                  size={14}
-                  strokeWidth={1.6}
-                />
+                <ArrowLeft size={14} strokeWidth={1.6} />
               </button>
 
               <button
@@ -333,10 +333,7 @@ export default function Workshop() {
                 aria-label="Próximas imagens"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.09] bg-white/[0.025] text-white/45 backdrop-blur-md transition-all duration-300 hover:border-[#1474ff]/50 hover:bg-[#1474ff]/10 hover:text-white"
               >
-                <ArrowRight
-                  size={14}
-                  strokeWidth={1.6}
-                />
+                <ArrowRight size={14} strokeWidth={1.6} />
               </button>
 
               <span className="ml-2 text-[7px] uppercase tracking-[0.2em] text-white/20">
