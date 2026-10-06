@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const photos = [
@@ -179,7 +179,6 @@ export default function Workshop() {
       ========================================================= */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-
         {/* Base */}
         <div className="absolute inset-0 bg-[#02050a]" />
 
@@ -229,48 +228,25 @@ export default function Workshop() {
       ========================================================= */}
 
       <div className="relative mx-auto max-w-[1180px] px-5 sm:px-7 lg:px-8">
-
         {/* HEADER */}
-        <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <div>
-            <div className="mb-3 flex items-center gap-2.5">
-              <span className="h-px w-6 bg-[#3b8cff]" />
+        <div className="mb-8">
+          <div className="mb-3 flex items-center gap-2.5">
+            <span className="h-px w-6 bg-[#3b8cff]" />
 
-              <span className="text-[7px] font-semibold uppercase tracking-[0.28em] text-[#5a9fff]">
-                A oficina
-              </span>
-            </div>
-
-            <h2 className="text-[34px] font-bold leading-[0.95] tracking-[-0.055em] text-white sm:text-[42px] lg:text-[50px]">
-              A oficina por trás
-              <br />
-              <span className="text-white/30">do serviço.</span>
-            </h2>
+            <span className="text-[7px] font-semibold uppercase tracking-[0.28em] text-[#5a9fff]">
+              A oficina
+            </span>
           </div>
 
-          <div className="max-w-[350px]">
-            <p className="text-[9px] leading-4.5 text-white/35 sm:text-[10px]">
-              Um ambiente preparado para cuidar do seu veículo com atenção,
-              conhecimento técnico e responsabilidade em cada etapa.
-            </p>
-
-            <div className="mt-3 flex items-center gap-2">
-              <MapPin
-                size={10}
-                strokeWidth={1.5}
-                className="text-[#3b8cff]"
-              />
-
-              <span className="text-[7px] uppercase tracking-[0.13em] text-white/35">
-                Paulínia — SP
-              </span>
-            </div>
-          </div>
+          <h2 className="text-[34px] font-bold leading-[0.95] tracking-[-0.055em] text-white sm:text-[42px] lg:text-[50px]">
+            A oficina por trás
+            <br />
+            <span className="text-white/30">do serviço.</span>
+          </h2>
         </div>
 
         {/* CARROSSEL */}
         <div className="relative">
-
           {/* Glow atrás do carrossel */}
           <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[30px] bg-[#0759d9]/[0.055] blur-[55px]" />
 
@@ -372,35 +348,6 @@ export default function Workshop() {
               11 imagens
             </span>
           </div>
-        </div>
-
-        {/* FECHAMENTO */}
-        <div className="mt-8 flex flex-col gap-4 border-t border-white/[0.07] pt-5 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-[7px] font-semibold uppercase tracking-[0.28em] text-[#4f96ff]">
-              Nosso jeito de trabalhar
-            </p>
-
-            <h3 className="mt-1.5 text-[20px] font-semibold tracking-[-0.045em] text-white sm:text-[24px]">
-              Honestidade é o nosso sobrenome.
-            </h3>
-          </div>
-
-          <a
-            href="#contato"
-            className="group inline-flex w-fit items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.025] px-3.5 py-2 backdrop-blur-md transition-all duration-300 hover:border-[#1474ff]/40 hover:bg-[#0759d9]/10"
-          >
-            <span className="text-[7px] font-semibold uppercase tracking-[0.18em] text-white/60 group-hover:text-white">
-              Conheça a VL Autoclima
-            </span>
-
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1474ff] shadow-[0_0_20px_rgba(20,116,255,0.25)]">
-              <ArrowUpRight
-                size={11}
-                className="text-white"
-              />
-            </span>
-          </a>
         </div>
       </div>
     </section>

@@ -39,8 +39,8 @@ export default function Hero() {
       {/* GLOW AZUL */}
       <div className="absolute -left-40 top-[30%] -z-10 h-[600px] w-[600px] rounded-full bg-[#0759d9]/10 blur-[160px]" />
 
-      {/* LINHA LATERAL */}
-      <div className="absolute bottom-0 left-[7%] top-[84px] hidden w-px bg-white/[0.07] lg:block" />
+      {/* TRANSIÇÃO INFERIOR */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-[#030507]/95 via-[#030507]/35 to-transparent" />
 
       {/* CONTEÚDO */}
       <div className="relative mx-auto flex min-h-[760px] w-full max-w-[1440px] items-center px-5 pb-32 pt-32 sm:px-8 lg:min-h-screen lg:px-16 lg:pb-36 lg:pt-32">
@@ -95,7 +95,8 @@ export default function Hero() {
         </div>
 
         {/* INFORMAÇÕES INFERIORES */}
-        <div className="hero-fade absolute bottom-7 left-5 right-5 flex flex-col gap-4 border-t border-white/[0.09] pt-5 [animation-delay:600ms] sm:left-8 sm:right-8 lg:bottom-9 lg:left-16 lg:right-16 lg:flex-row lg:items-center lg:justify-between">
+        <div className="hero-fade absolute bottom-7 left-5 right-5 flex flex-col gap-4 pt-5 [animation-delay:600ms] sm:left-8 sm:right-8 lg:bottom-9 lg:left-16 lg:right-16 lg:flex-row lg:items-center lg:justify-between">
+          {/* LOCALIZAÇÃO */}
           <div className="flex items-center gap-2.5 text-white/45">
             <MapPin
               size={14}
@@ -108,6 +109,7 @@ export default function Hero() {
             </span>
           </div>
 
+          {/* SERVIÇOS */}
           <div className="flex items-center gap-5 text-[9px] font-medium uppercase tracking-[0.16em] text-white/30 sm:text-[10px]">
             <span>Ar-condicionado</span>
 

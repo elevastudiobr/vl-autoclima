@@ -1,128 +1,124 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 
-import {
-  ADDRESS,
-  BUSINESS_HOURS,
-  EMAIL,
-  INSTAGRAM_URL,
-  NAVIGATION,
-  WHATSAPP_NUMBER,
-} from "@/lib/constants";
+const WHATSAPP_URL =
+  "https://wa.me/5519997896239?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20o%20meu%20carro.";
+
+const INSTAGRAM_URL = "https://www.instagram.com/vl_autoclima/";
+
+const ELEVA_URL = "https://eleva-studio.vercel.app/";
 
 export default function Footer() {
-  const whatsappMessage =
-    "Olá! Gostaria de solicitar um orçamento para o meu veículo com a VL Autoclima.";
-
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    whatsappMessage
-  )}`;
-
   return (
-    <footer className="border-t border-white/[0.07] bg-[#020304]">
-      <div className="mx-auto max-w-[1440px] px-5 py-14 sm:px-8 lg:px-16 lg:py-16">
-        <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr_0.8fr]">
-          <div>
-            <Image
+    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-[#020407]">
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-0 h-[250px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#0759d9]/[0.06] blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        {/* Top */}
+        <div className="flex flex-col items-center justify-between gap-7 py-9 sm:py-10 md:flex-row">
+          {/* Brand */}
+          <Link
+            href="/"
+            className="group flex items-center transition-opacity duration-300 hover:opacity-80"
+          >
+            <img
               src="/images/logo/logo-vl.png"
               alt="VL Autoclima"
-              width={170}
-              height={52}
-              className="h-auto w-[145px] object-contain"
+              className="h-10 w-auto object-contain"
             />
+          </Link>
 
-            <p className="mt-6 max-w-[360px] text-[11px] leading-6 text-white/30">
-              Ar-condicionado automotivo e mecânica geral em Paulínia.
-              Diagnóstico preciso, atendimento transparente e cuidado em cada
-              detalhe.
-            </p>
-
-            <Link
-              href={whatsappUrl}
+          {/* Social */}
+          <div className="flex items-center gap-3">
+            {/* Instagram */}
+            <a
+              href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group mt-7 inline-flex items-center gap-2 text-[11px] font-semibold text-white transition-colors hover:text-[#5a9fff]"
+              aria-label="Instagram da VL Autoclima"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-white/50 transition-all duration-300 hover:border-white/[0.16] hover:bg-white/[0.06] hover:text-white"
             >
-              <span>Solicitar orçamento</span>
-
-              <ArrowUpRight
-                size={14}
-                strokeWidth={1.8}
-                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </Link>
-          </div>
-
-          <div>
-            <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/25">
-              Navegação
-            </p>
-
-            <nav className="mt-5 flex flex-col gap-3">
-              {NAVIGATION.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="w-fit text-[11px] text-white/45 transition-colors hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div>
-            <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/25">
-              Contato
-            </p>
-
-            <div className="mt-5 space-y-4 text-[11px] leading-5 text-white/40">
-              <p>
-                {ADDRESS.street}
-                <br />
-                {ADDRESS.neighborhood}
-                <br />
-                {ADDRESS.city}
-              </p>
-
-              <p>
-                {BUSINESS_HOURS.days}
-                <br />
-                {BUSINESS_HOURS.hours}
-              </p>
-
-              <Link
-                href={`mailto:${EMAIL}`}
-                className="block transition-colors hover:text-white"
+              <svg
+                viewBox="0 0 24 24"
+                className="h-[17px] w-[17px]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
               >
-                {EMAIL}
-              </Link>
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                />
+                <circle cx="12" cy="12" r="4.2" />
+                <circle
+                  cx="17.4"
+                  cy="6.7"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+            </a>
 
-              <Link
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block transition-colors hover:text-white"
+            {/* WhatsApp */}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp da VL Autoclima"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-white/50 transition-all duration-300 hover:border-[#1474ff]/40 hover:bg-[#1474ff]/10 hover:text-white"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-[17px] w-[17px]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
               >
-                @vl_autoclima
-              </Link>
-            </div>
+                <path
+                  d="M20 11.5a8 8 0 0 1-11.8 7.1L4 20l1.4-4.1A8 8 0 1 1 20 11.5Z"
+                />
+                <path
+                  d="M8.5 8.7c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c.5 1 1.3 1.8 2.3 2.3l.6-.5c.2-.2.4-.2.6-.1l1.7.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.4.2-1 .3-1.5.1-1.3-.3-2.6-1-3.6-2s-1.7-2.3-2-3.6c-.2-.5-.1-1.1.1-1.5Z"
+                />
+              </svg>
+            </a>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/[0.07] pt-6 text-[9px] text-white/20 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} VL Autoclima. Todos os direitos
-            reservados.
+        {/* Divider */}
+        <div className="h-px bg-white/[0.06]" />
+
+        {/* Bottom */}
+        <div className="flex flex-col items-center justify-between gap-4 py-6 text-center sm:flex-row sm:text-left">
+          <p className="text-[11px] leading-5 text-white/30">
+            © 2026 VL Autoclima. Todos os direitos reservados.
           </p>
 
-          <p>
-            Desenvolvido por{" "}
-            <span className="font-semibold text-white/35">
-              Eleva Studio
+          <div className="flex items-center gap-2.5">
+            <span className="text-[10px] text-white/25">
+              Desenvolvido por
             </span>
-          </p>
+
+            <a
+              href={ELEVA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Eleva Studio"
+              className="group flex items-center"
+            >
+              <img
+                src="/images/logo-eleva.webp"
+                alt="Eleva Studio"
+                className="h-6 w-auto object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -5,9 +5,7 @@ import Hero from "@/components/home/Hero";
 import Services from "@/components/home/Services";
 import Diagnosis from "@/components/home/Diagnosis";
 import Workshop from "@/components/home/Workshop";
-import HowItWorks from "@/components/home/HowItWorks";
 import Contact from "@/components/home/Contact";
-import FinalCTA from "@/components/home/FinalCTA";
 
 export default function Home() {
   return (
@@ -22,11 +20,7 @@ export default function Home() {
 
       <Workshop />
 
-      <HowItWorks />
-
       <Contact />
-
-      <FinalCTA />
 
       <Footer />
     </main>

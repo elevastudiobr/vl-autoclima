@@ -36,18 +36,52 @@ export default function Header() {
     setIsOpen(false);
   };
 
+  const scrollToSection = (href: string) => {
+    const id = href.replace("#", "");
+    const element = document.getElementById(id);
+
+    if (!element) return;
+
+    const headerOffset = 84;
+
+    const elementPosition =
+      element.getBoundingClientRect().top + window.scrollY;
+
+    const offsetPosition = Math.max(
+      elementPosition - headerOffset,
+      0
+    );
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+
+    closeMenu();
+  };
+
+  const handleLogoClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    closeMenu();
+  };
+
   return (
     <header
       className={`fixed left-0 top-0 z-50 w-full transition-all duration-500 ${
         scrolled
-          ? "border-b border-white/[0.07] bg-[#030507]/88 shadow-[0_8px_40px_rgba(0,0,0,0.22)] backdrop-blur-2xl"
+          ? "border-b border-white/[0.07] bg-[#030507]/65 shadow-[0_8px_40px_rgba(0,0,0,0.18)] backdrop-blur-2xl"
           : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-[78px] max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:h-[84px] lg:px-10">
-        <Link
-          href="#inicio"
-          onClick={closeMenu}
+        {/* LOGO */}
+        <button
+          type="button"
+          onClick={handleLogoClick}
           className="group relative z-10 flex shrink-0 items-center"
           aria-label="VL Autoclima - Início"
         >
@@ -59,22 +93,25 @@ export default function Header() {
             priority
             className="h-auto w-[130px] object-contain transition-opacity duration-300 group-hover:opacity-85 sm:w-[145px] lg:w-[155px]"
           />
-        </Link>
+        </button>
 
+        {/* DESKTOP NAV */}
         <nav className="hidden items-center gap-8 lg:flex">
           {NAVIGATION.map((item) => (
-            <Link
+            <button
               key={item.href}
-              href={item.href}
+              type="button"
+              onClick={() => scrollToSection(item.href)}
               className="group relative py-2 text-[12px] font-medium tracking-[0.01em] text-white/55 transition-colors duration-300 hover:text-white"
             >
               {item.label}
 
               <span className="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-[#1474ff] transition-all duration-300 group-hover:w-full" />
-            </Link>
+            </button>
           ))}
         </nav>
 
+        {/* DESKTOP CTA */}
         <div className="hidden lg:block">
           <Link
             href={WHATSAPP_CTA_URL}
@@ -96,6 +133,7 @@ export default function Header() {
           </Link>
         </div>
 
+        {/* MOBILE MENU BUTTON */}
         <button
           type="button"
           onClick={() => setIsOpen((value) => !value)}
@@ -111,26 +149,27 @@ export default function Header() {
         </button>
       </div>
 
+      {/* MOBILE MENU */}
       <div
-        className={`overflow-hidden border-t border-white/[0.06] bg-[#030507]/96 backdrop-blur-2xl transition-all duration-500 lg:hidden ${
+        className={`overflow-hidden border-t border-white/[0.06] bg-[#030507]/92 backdrop-blur-2xl transition-all duration-500 lg:hidden ${
           isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <nav className="px-5 pb-6 pt-3 sm:px-8">
           <div className="flex flex-col">
             {NAVIGATION.map((item, index) => (
-              <Link
+              <button
                 key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-                className="flex items-center justify-between border-b border-white/[0.06] py-4 text-[13px] font-medium text-white/65 transition-colors hover:text-white"
+                type="button"
+                onClick={() => scrollToSection(item.href)}
+                className="flex items-center justify-between border-b border-white/[0.06] py-4 text-left text-[13px] font-medium text-white/65 transition-colors hover:text-white"
               >
                 <span>{item.label}</span>
 
                 <span className="text-[9px] font-bold tracking-[0.15em] text-white/20">
                   0{index + 1}
                 </span>
-              </Link>
+              </button>
             ))}
 
             <Link
