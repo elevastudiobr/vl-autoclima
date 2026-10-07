@@ -93,12 +93,13 @@ export default function Footer() {
         </div>
 
         {/* DESKTOP */}
-        <div className="hidden items-center justify-between gap-4 sm:flex">
-          <p className="text-[10px] leading-4 text-white/30">
-            © 2026 VL Autoclima. Todos os direitos reservados.
-          </p>
-
+        <div className="hidden items-center sm:flex">
+          {/* Copyright + redes */}
           <div className="flex items-center gap-4">
+            <p className="text-[10px] leading-4 text-white/30">
+              © 2026 VL Autoclima. Todos os direitos reservados.
+            </p>
+
             {/* Instagram */}
             <a
               href={INSTAGRAM_URL}
@@ -145,21 +146,21 @@ export default function Footer() {
                 <path d="M8.5 8.7c.2-.4.4-.4.7.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c.5 1 1.3 1.8 2.3 2.3l.6-.5c.2-.2.4-.2.6-.1l1.7.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.4.2-1 .3-1.5.1-1.3-.3-2.6-1-3.6-2s-1.7-2.3-2-3.6c-.2-.5-.1-1.1.1-1.5Z" />
               </svg>
             </a>
+          </div>
 
-            <span className="h-3 w-px bg-white/[0.08]" />
+          {/* Desenvolvido por */}
+          <div className="ml-auto flex items-center gap-1.5">
+            <span className="text-[10px] text-white/30">
+              Desenvolvido por
+            </span>
 
-            {/* Eleva */}
             <Link
               href={ELEVA_URL}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Eleva Studio"
-              className="flex items-center gap-1.5 opacity-60 transition-opacity duration-300 hover:opacity-100"
+              className="flex items-center opacity-60 transition-opacity duration-300 hover:opacity-100"
             >
-              <span className="whitespace-nowrap text-[10px] text-white/30">
-                Desenvolvido por
-              </span>
-
               <img
                 src="/images/logo-eleva.webp"
                 alt="Eleva Studio"
