@@ -5,11 +5,15 @@ import { useEffect, useRef, useState } from "react";
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
+  delay?: number;
+  duration?: number;
 };
 
 export default function Reveal({
   children,
   className = "",
+  delay = 0,
+  duration = 700,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -27,7 +31,8 @@ export default function Reveal({
         }
       },
       {
-        threshold: 0.12,
+        threshold: 0.08,
+        rootMargin: "0px 0px -50px 0px",
       }
     );
 
@@ -39,11 +44,15 @@ export default function Reveal({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ${
+      className={`transition-[opacity,transform] ease-out ${
         visible
           ? "translate-y-0 opacity-100"
-          : "translate-y-6 opacity-0"
+          : "translate-y-8 opacity-0"
       } ${className}`}
+      style={{
+        transitionDuration: `${duration}ms`,
+        transitionDelay: `${delay}ms`,
+      }}
     >
       {children}
     </div>

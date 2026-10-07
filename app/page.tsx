@@ -7,6 +7,8 @@ import Diagnosis from "@/components/home/Diagnosis";
 import Workshop from "@/components/home/Workshop";
 import Contact from "@/components/home/Contact";
 
+import Reveal from "@/components/ui/Reveal";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#030507]">
@@ -14,13 +16,21 @@ export default function Home() {
 
       <Hero />
 
-      <Services />
+      <Reveal>
+        <Services />
+      </Reveal>
 
-      <Diagnosis />
+      <Reveal delay={40}>
+        <Diagnosis />
+      </Reveal>
 
-      <Workshop />
+      <Reveal delay={40}>
+        <Workshop />
+      </Reveal>
 
-      <Contact />
+      <Reveal delay={40}>
+        <Contact />
+      </Reveal>
 
       <Footer />
     </main>

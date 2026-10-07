@@ -9,83 +9,166 @@ const ELEVA_URL = "https://eleva-studio.vercel.app/";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] bg-[#020407]">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-8 sm:py-5 lg:px-10">
-        {/* Copyright */}
-        <p className="min-w-0 text-[8px] leading-4 text-white/30 sm:text-[10px]">
-          © 2026 VL Autoclima. Todos os direitos reservados.
-        </p>
+    <footer className="border-t border-white/[0.05] bg-[#020407]">
+      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-8 sm:py-5 lg:px-10">
 
-        {/* Social + Eleva */}
-        <div className="flex shrink-0 items-center gap-2.5 sm:gap-4">
-          {/* Instagram */}
-          <a
-            href={INSTAGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram da VL Autoclima"
-            className="text-white/35 transition-colors duration-300 hover:text-white"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              className="h-[14px] w-[14px] sm:h-[15px] sm:w-[15px]"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-            >
-              <rect x="3" y="3" width="18" height="18" rx="5" />
-              <circle cx="12" cy="12" r="4.2" />
-              <circle
-                cx="17.4"
-                cy="6.7"
-                r="1"
-                fill="currentColor"
-                stroke="none"
-              />
-            </svg>
-          </a>
+        {/* MOBILE */}
+        <div className="flex flex-col gap-3 sm:hidden">
+          {/* Linha 1 */}
+          <div className="flex items-center justify-between">
+            <p className="text-[9px] leading-4 text-white/35">
+              © 2026 VL Autoclima. Todos os direitos reservados.
+            </p>
 
-          {/* WhatsApp */}
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp da VL Autoclima"
-            className="text-white/35 transition-colors duration-300 hover:text-white"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              className="h-[14px] w-[14px] sm:h-[15px] sm:w-[15px]"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-            >
-              <path d="M20 11.5a8 8 0 0 1-11.8 7.1L4 20l1.4-4.1A8 8 0 1 1 20 11.5Z" />
-              <path d="M8.5 8.7c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c.5 1 1.3 1.8 2.3 2.3l.6-.5c.2-.2.4-.2.6-.1l1.7.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.4.2-1 .3-1.5.1-1.3-.3-2.6-1-3.6-2s-1.7-2.3-2-3.6c-.2-.5-.1-1.1.1-1.5Z" />
-            </svg>
-          </a>
+            <div className="flex shrink-0 items-center gap-3.5">
+              {/* Instagram */}
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram da VL Autoclima"
+                className="text-white/35 transition-colors duration-300 hover:text-white"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-[15px] w-[15px]"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4.2" />
+                  <circle
+                    cx="17.4"
+                    cy="6.7"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
 
-          <span className="h-3 w-px bg-white/[0.08]" />
+              {/* WhatsApp */}
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp da VL Autoclima"
+                className="text-white/35 transition-colors duration-300 hover:text-white"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-[15px] w-[15px]"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <path d="M20 11.5a8 8 0 0 1-11.8 7.1L4 20l1.4-4.1A8 8 0 1 1 20 11.5Z" />
+                  <path d="M8.5 8.7c.2-.4.4-.4.7.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c.5 1 1.3 1.8 2.3 2.3l.6-.5c.2-.2.4-.2.6-.1l1.7.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.4.2-1 .3-1.5.1-1.3-.3-2.6-1-3.6-2s-1.7-2.3-2-3.6c-.2-.5-.1-1.1.1-1.5Z" />
+                </svg>
+              </a>
+            </div>
+          </div>
 
-          {/* Desenvolvido por Eleva */}
-          <Link
-            href={ELEVA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Eleva Studio"
-            className="flex items-center gap-1.5 opacity-60 transition-opacity duration-300 hover:opacity-100"
-          >
-            <span className="whitespace-nowrap text-[8px] text-white/30 sm:text-[10px]">
+          {/* Linha 2 */}
+          <div className="flex items-center justify-center gap-1.5 border-t border-white/[0.05] pt-3">
+            <span className="text-[8px] text-white/25">
               Desenvolvido por
             </span>
 
-            <img
-              src="/images/logo-eleva.webp"
-              alt="Eleva Studio"
-              className="h-[17px] w-auto object-contain sm:h-[21px]"
-            />
-          </Link>
+            <Link
+              href={ELEVA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Eleva Studio"
+              className="flex items-center opacity-60 transition-opacity duration-300 hover:opacity-100"
+            >
+              <img
+                src="/images/logo-eleva.webp"
+                alt="Eleva Studio"
+                className="h-[18px] w-auto object-contain"
+              />
+            </Link>
+          </div>
         </div>
+
+        {/* DESKTOP */}
+        <div className="hidden items-center justify-between gap-4 sm:flex">
+          <p className="text-[10px] leading-4 text-white/30">
+            © 2026 VL Autoclima. Todos os direitos reservados.
+          </p>
+
+          <div className="flex items-center gap-4">
+            {/* Instagram */}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram da VL Autoclima"
+              className="text-white/35 transition-colors duration-300 hover:text-white"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-[15px] w-[15px]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4.2" />
+                <circle
+                  cx="17.4"
+                  cy="6.7"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+            </a>
+
+            {/* WhatsApp */}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp da VL Autoclima"
+              className="text-white/35 transition-colors duration-300 hover:text-white"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-[15px] w-[15px]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+              >
+                <path d="M20 11.5a8 8 0 0 1-11.8 7.1L4 20l1.4-4.1A8 8 0 1 1 20 11.5Z" />
+                <path d="M8.5 8.7c.2-.4.4-.4.7.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c.5 1 1.3 1.8 2.3 2.3l.6-.5c.2-.2.4-.2.6-.1l1.7.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.4.2-1 .3-1.5.1-1.3-.3-2.6-1-3.6-2s-1.7-2.3-2-3.6c-.2-.5-.1-1.1.1-1.5Z" />
+              </svg>
+            </a>
+
+            <span className="h-3 w-px bg-white/[0.08]" />
+
+            {/* Eleva */}
+            <Link
+              href={ELEVA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Eleva Studio"
+              className="flex items-center gap-1.5 opacity-60 transition-opacity duration-300 hover:opacity-100"
+            >
+              <span className="whitespace-nowrap text-[10px] text-white/30">
+                Desenvolvido por
+              </span>
+
+              <img
+                src="/images/logo-eleva.webp"
+                alt="Eleva Studio"
+                className="h-[21px] w-auto object-contain"
+              />
+            </Link>
+          </div>
+        </div>
+
       </div>
     </footer>
   );
